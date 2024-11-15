@@ -308,7 +308,7 @@
         <div id='tc-map'></div>
     </div>
     <div id="play-btn"><i class="iconfont" style="font-size: 20px;">&#xe617;</i></div>
-    <audio id="mp3" src="./music.mp3" autoplay loop></audio>
+    <audio id="mp3" src="http://43.138.50.135/lt/music.mp3" autoplay loop></audio>
     <!-- START: footer -->
     <section id="footer" class="img-bg-5">
         <div class="container">
@@ -382,15 +382,11 @@
             let playBtn = document.querySelector('#play-btn')
             let play = false;
             mp3.load()
-            document.addEventListener("WeixinJSBridgeReady", function () {
-                first = false;
-                mp3.play()
-                if (!mp3.paused) {
-                    this.style.animationPlayState = 'running'
-                    mp3.play()
-                    play = true
-                }
-            }, false)
+            document.addEventListener('touchstart', function () {
+                mp3.play();
+                playBtn.style.animationPlayState = 'running'
+            });
+
             play = !mp3.paused && mp3.readyState === 4
             if (play) {
                 playBtn.style.animationPlayState = 'running'
@@ -398,7 +394,6 @@
                 playBtn.style.animationPlayState = 'paused'
             }
             playBtn.addEventListener('click', function (event) {
-                first = false;
                 if (play) {
                     this.style.animationPlayState = 'paused'
                     mp3.pause()
@@ -419,7 +414,6 @@
             document.body.appendChild(script);
             musicPlay();
         }
-
         window.onload = loadScript;
     </script>
 
