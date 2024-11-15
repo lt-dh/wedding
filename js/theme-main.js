@@ -160,7 +160,36 @@ $(document).ready(function () {
 		1. Nav - Sticky
 	==============================*/
 	$(window).on("load", function () {
-		$('#fullscreenloading').delay(350).fadeOut('slow');
+		// $('#fullscreenloading').delay(350).fadeOut('slow');
+		// $('#hideButton').style.display = 'block';
+		// 显示按钮
+		$('#hideButton').fadeIn('slow');
+
+		// 按钮点击后，隐藏加载动画和按钮
+		$('#hideButton').on('click', function () {
+			$('#fullscreenloading').fadeOut('slow');
+			$('#hideButton').fadeOut('slow');
+			let mp3 = document.querySelector('#mp3')
+			let playBtn = document.querySelector('#play-btn')
+			mp3.load()
+			playBtn.style.animationPlayState = 'running'
+			mp3.play()
+			let play = true;
+			playBtn.addEventListener('click', function (event) {
+				if (play) {
+					playBtn.style.animationPlayState = 'paused'
+					mp3.pause()
+					play = false
+				} else {
+					if (mp3.readyState === 4) {
+						playBtn.style.animationPlayState = 'running'
+						mp3.play()
+						play = true
+					}
+				}
+			})
+		});
+
 		$("#nav-sticky-wrapper").sticky({
 			topSpacing: 0
 		});

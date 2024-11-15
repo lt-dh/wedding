@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="libs/magnific-popup/magnific-popup.css">
     <!-- Theme Main Style -->
     <link rel="stylesheet" href="css/theme-style.css">
+    <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
         #play-btn {
             position: absolute;
@@ -34,6 +35,35 @@
             color: #efefef;
             box-shadow: 1px 2px 2px #777;
         }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 934283 */
+            src: url('http://at.alicdn.com/t/font_934283_rjwklbuzkg.eot');
+            src: url('http://at.alicdn.com/t/font_934283_rjwklbuzkg.eot?#iefix') format('embedded-opentype'),
+                url('http://at.alicdn.com/t/font_934283_rjwklbuzkg.woff') format('woff'),
+                url('http://at.alicdn.com/t/font_934283_rjwklbuzkg.ttf') format('truetype'),
+                url('http://at.alicdn.com/t/font_934283_rjwklbuzkg.svg#iconfont') format('svg');
+        }
     </style>
 </head>
 
@@ -42,6 +72,8 @@
     <div id="fullscreenloading">
         <img src="http://43.138.50.135/lt/img/preloader.gif" alt="">
     </div>
+    <!-- 显示按钮 -->
+    <button id="hideButton">Welcome</button>
     <!-- END: fullscreenloading -->
 
     <div id="para-img">
@@ -377,42 +409,11 @@
                 window.open('https://map.baidu.com/search/%E4%BB%8A%E7%A6%8F%E6%BA%90%E5%A9%9A%E7%A4%BC%E9%85%92%E5%BA%97/@12630825.625,4074179.72,19z?querytype=s&da_src=shareurl&wd=%E4%BB%8A%E7%A6%8F%E6%BA%90%E5%A9%9A%E7%A4%BC%E9%85%92%E5%BA%97&c=268&src=0&wd2=%E9%83%91%E5%B7%9E%E5%B8%82%E6%96%B0%E5%AF%86%E5%B8%82&pn=0&sug=1&l=18&b=(12629890.188350128,4073789.5105939466;12631809.940179164,4074683.886875613)&from=webmap&biz_forward=%7B%22scaler%22:1,%22styles%22:%22pl%22%7D&sug_forward=316774df46f0878e0f3dda6a&device_ratio=1');
             });
         }
-        function musicPlay() {
-            let mp3 = document.querySelector('#mp3')
-            let playBtn = document.querySelector('#play-btn')
-            let play = false;
-            mp3.load()
-            document.addEventListener('touchstart', function () {
-                mp3.play();
-                playBtn.style.animationPlayState = 'running'
-            });
-
-            play = !mp3.paused && mp3.readyState === 4
-            if (play) {
-                playBtn.style.animationPlayState = 'running'
-            } else {
-                playBtn.style.animationPlayState = 'paused'
-            }
-            playBtn.addEventListener('click', function (event) {
-                if (play) {
-                    this.style.animationPlayState = 'paused'
-                    mp3.pause()
-                    play = false
-                } else {
-                    if (mp3.readyState === 4) {
-                        this.style.animationPlayState = 'running'
-                        mp3.play()
-                        play = true
-                    }
-                }
-            })
-        }
         function loadScript() {
             var script = document.createElement("script");
             script.type = "text/javascript";
             script.src = "https://map.qq.com/api/js?v=2.exp&key=YOUR-MAP-KEY&callback=init";
             document.body.appendChild(script);
-            musicPlay();
         }
         window.onload = loadScript;
     </script>
