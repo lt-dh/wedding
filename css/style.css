@@ -32,7 +32,9 @@
     z-index: -1;
     animation: sun 8s infinite;
 }
-
+#hideButton span {
+    user-select: none; /* 禁止内部文字选择 */
+}
 @keyframes sun {
     100% {
         background-position: -400% 0;
