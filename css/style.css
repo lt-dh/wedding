@@ -3,7 +3,6 @@
     left: 50%;
     top: 67%;
     transform: translate(-50%, -50%);
-
     font-size: 24px;
     background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
     background-size: 400%;
@@ -16,6 +15,7 @@
     position: fixed;
     z-index: 1400;
     display: none;
+    animation: sun 8s infinite;
 }
 
 #hideButton::before {
@@ -30,13 +30,6 @@
     border-radius: 50px;
     filter: blur(20px);
     z-index: -1;
-}
-
-#hideButton:hover::before {
-    animation: sun 8s infinite;
-}
-
-#hideButton:hover {
     animation: sun 8s infinite;
 }
 
